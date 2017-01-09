@@ -28,7 +28,7 @@ userNum = 1
 compNum = 2
 startingBoard = [[0,0,0],[0,0,0],[0,0,0]]
 
--- To run the program, we can just run "main E" or "main H".
+-- To run the program, we can just run "tictactoe E" or "tictactoe H".
 -- Any other argument will run in Easy mode by default
 main :: IO ()
 main = do args <- getArgs
