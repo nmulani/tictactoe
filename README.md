@@ -18,7 +18,8 @@ Once you start the program, empty spaces on the board will be displayed with an 
 - (2,0) (2,1) (2,2)
 
 Some possible opportunities for improvement:
+- Earlier tie detection (prior to placing final piece on the board)
 - Color code tic-tac-toe board
-- Give the user a hint about best next moves
+- Give the user a hint about best next move
 - Add a GUI interface
 - Allow two people to play each other
