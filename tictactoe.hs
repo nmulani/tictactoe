@@ -43,7 +43,7 @@ main = do args <- getArgs
                      putStrLn "Arguments not understood. Playing in default easy mode."
                      playGame startingBoard "E"
 
--- Main program flow:
+-- Main program flow (IO):
 --
 -- Show current board state
 -- Check for win or tie
@@ -247,9 +247,32 @@ wasThereATie [a,b,c]
   | otherwise = False
 
 
--- Logic for calculating computer's next move (easy and hard)
------ computerHardNextMove
+-- Logic for calculating computer's next move (easy and hard modes)
+----- computerHardNextMove (includes blockUser, tries to stop user from winning)
 ----- computerEasyNextMove
+
+--------rowWinner (find horizontal position that will win)
+---------rowNextWinningMove
+
+--------verticalWinner (find vertical position that will win)
+---------verticalNextWinningMove
+
+--------diagonalWinner (find diagonal position that will win)
+---------diagonalNextWinningMove
+
+--------rowStrategicNext (find horizontal position that will lead to a win)
+---------findGoodEmptySpaceRow
+
+--------diagonalStrategicNext (find diagonal position that will lead to a win)
+---------findGoodEmptySpaceDiagonal
+
+--------verticalStrategicNext (find vertical position that will lead to a win)
+---------verticalNextGoodEmptySpace
+
+--------emptyNext (find next available empty space on board)
+---------findEmptySpace
+
+--------blockUser (stop user from winning)
 
 
 -- Computer's automated move - computer plays to win and also to prevent user from winning
@@ -340,19 +363,18 @@ diagonalNextWinningMove [a,b,c] d
 -- Find a strategic empty slot next to one of the computer's pieces in a row
 rowStrategicNext :: Matrix -> Position
 rowStrategicNext [a,b,c]
-  | (findGoodEmptySpaceRow a compNum /= 4) = (0, (findGoodEmptySpaceRow a compNum))
-  | (findGoodEmptySpaceRow b compNum /= 4) = (1, (findGoodEmptySpaceRow b compNum))
-  | (findGoodEmptySpaceRow c compNum /= 4) = (2, (findGoodEmptySpaceRow c compNum))
+  | (findGoodEmptySpaceRow a compNum 0 /= (4,4)) = (findGoodEmptySpaceRow a compNum 0)
+  | (findGoodEmptySpaceRow b compNum 1 /= (4,4)) = (findGoodEmptySpaceRow b compNum 1)
+  | (findGoodEmptySpaceRow c compNum 2 /= (4,4)) = (findGoodEmptySpaceRow c compNum 2)
   | otherwise = (4,4)
 
-findGoodEmptySpaceRow :: [Int] -> Int -> Int
-findGoodEmptySpaceRow x y = case elemIndex 0 x of
-                       Just n -> case elemIndex y x of
-                                    Just o -> case (abs(n-o)) of
-                                                  1 -> n
-                                                  otherwise -> 4 -- Signal that we didn't find a strategic empty slot
-                                    Nothing -> 4 -- Signal that we didn't find a strategic empty slot
-                       Nothing -> 4 -- Signal that we didn't find a strategic empty slot
+findGoodEmptySpaceRow :: [Int] -> Int -> Int -> Position
+findGoodEmptySpaceRow a d rowIndex
+    | (a == [d,0,0]) = (rowIndex, 2)
+    | (a == [0,0,d]) = (rowIndex, 1)
+    | (a == [0,d,0]) = (rowIndex, 0)
+    | otherwise = (4,4) -- Signal that we didn't find a winning move in this row
+
 
 
 
