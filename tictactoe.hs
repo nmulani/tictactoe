@@ -24,8 +24,8 @@ type Position = (Int,Int)
 
 -- Our Xs and Os are represented by 1s and 2s. User is 1, Computer is 2
 -- The starting board will only have zeroes.
-userNum = 1
-compNum = 2
+userNum = 1  --X
+compNum = 2  --O
 startingBoard = [[0,0,0],[0,0,0],[0,0,0]]
 
 -- To run the program, we can just run "tictactoe E" or "tictactoe H".
