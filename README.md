@@ -17,7 +17,7 @@ Once you start the program, empty spaces on the board will be displayed with an 
 - (1,0) (1,1) (1,2)
 - (2,0) (2,1) (2,2)
 
-Some opportunities for improvement:
+Some possible opportunities for improvement:
 - Color code tic-tac-toe board
 - Give the user a hint about best next moves
 - Add a GUI interface
