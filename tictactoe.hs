@@ -158,7 +158,7 @@ changePiece f (a:as) = f a : as
 printRow :: [Int] -> String
 printRow [] = "\n"
 printRow [a]
-    | (a == compNum) = show "Y"
+    | (a == compNum) = show "O"
     | (a == userNum) = show "X"
     | otherwise = show "E"
 printRow (a:as) = (printRow [a]) ++ " " ++ (printRow as) ++ "\n"
