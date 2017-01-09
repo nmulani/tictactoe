@@ -13,9 +13,9 @@ Use "./tictactoe E" to run the game in "Easy" mode, where the computer will not 
 
 Once you start the program, empty spaces on the board will be displayed with an 'E'. Your pieces will be 'X' and the computer's pieces will be 'O'. Follow the provided instructions and input a coordinate to place your piece on the board, in the following format: (row number, column number). Rows and columns start from 0, in the following fashion:
 
-(0,0) (0,1) (0,2)
-(1,0) (1,1) (1,2)
-(2,0) (2,1) (2,2)
+- (0,0) (0,1) (0,2)
+- (1,0) (1,1) (1,2)
+- (2,0) (2,1) (2,2)
 
 Some opportunities for improvement:
 - Color code tic-tac-toe board
