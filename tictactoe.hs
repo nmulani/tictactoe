@@ -110,9 +110,10 @@ whichMode = do putStrLn "Would you like to play in easy or hard mode? E/H"
 -- Need exception handling here to validate Tuple input
 getUserMove :: IO (Int, Int)
 getUserMove = do putStrLn "Your move! A few pointers: "
-                 putStrLn "- Use the format (row number, column number): "
+                 putStrLn "- Use the format (row number, column number)"
                  putStrLn "- Rows start from zero from top to bottom."
                  putStrLn "- Columns start from zero from left to right."
+                 putStrLn "- (1,1) is the middle of the board."
                  putStrLn "- Es are empty spaces on the board.\n\n"
                  tuple <- getLine
                  readTuple <- try ((readIO tuple)) :: IO (Either SomeException (Int, Int))
